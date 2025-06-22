@@ -20,7 +20,7 @@ public class StudentDataLoader implements CommandLineRunner {
         student.setPhoneNumber("5194988971");
 
 
-        studentRepo.save(student);
+        /*studentRepo.save(student);*/
 
     }
 }

@@ -1,10 +1,15 @@
 package June_7st.Relationships.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+
+@Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 public class Student {
     @Id
     /// PRIMARY KEY
@@ -15,6 +20,10 @@ public class Student {
     private String lastName;
     private String phoneNumber;
     private String email;
+
+    /// ADDING PHONE TO UNDERSTAND 1-1 RELATIONSHIP
+    @OneToOne
+    private Phone phone;
 
 
     public String getFirstName() {
@@ -69,5 +78,13 @@ public class Student {
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", email='" + email + '\'' +
                 '}';
+    }
+
+    public Phone getPhone() {
+        return phone;
+    }
+
+    public void setPhone(Phone phone) {
+        this.phone = phone;
     }
 }

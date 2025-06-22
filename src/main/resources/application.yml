@@ -1,0 +1,21 @@
+server:
+  port: 8090
+spring:
+  application:
+     name: Relationships
+datasource:
+  url: jdbc:h2:./studentDb
+  username: sa
+  password:
+
+  h2:
+    console:
+      enabled: true
+
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: validate
+
+    show-sql: true
+
