@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 
 @Entity
 @NoArgsConstructor
@@ -24,6 +26,11 @@ public class Student {
     /// ADDING PHONE TO UNDERSTAND 1-1 RELATIONSHIP
     @OneToOne
     private Phone phone;
+
+
+    /// ADDING COURSE TO UNDERSTAND 1-MANY RELATIONSHIPS
+    @OneToMany()
+    private List<Course> courses;
 
 
     public String getFirstName() {
@@ -86,5 +93,13 @@ public class Student {
 
     public void setPhone(Phone phone) {
         this.phone = phone;
+    }
+
+    public List<Course> getCourses() {
+        return courses;
+    }
+
+    public void setCourses(List<Course> courses) {
+        this.courses = courses;
     }
 }

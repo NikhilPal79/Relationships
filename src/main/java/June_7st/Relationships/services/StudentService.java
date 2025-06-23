@@ -2,6 +2,7 @@ package June_7st.Relationships.services;
 
 import June_7st.Relationships.entities.Phone;
 import June_7st.Relationships.entities.Student;
+import June_7st.Relationships.repo.CourseRepo;
 import June_7st.Relationships.repo.PhoneRepo;
 import June_7st.Relationships.repo.StudentRepo;
 import June_7st.Relationships.util.StudentUtils;
@@ -24,6 +25,9 @@ public class StudentService {
     @Autowired
     PhoneRepo phoneRepo;
 
+    @Autowired
+    CourseRepo courseRepo;
+
     public List<Student> getStudent(){
         List<Student> studentList = studentRepo.findAll();
 
@@ -40,11 +44,16 @@ public class StudentService {
     }
 
     public Student createStudent(Student student){
-        /// THERE IS NO PRIMARY KEY WHEN PHONE IS ADDING TO a student OBJECT. SO WE NEED TO ADD PHONE TO STUDENT
+
+        courseRepo.saveAll(student.getCourses());
+
+
+
+        /// THERE IS NO PRIMARY KEY WHEN a PHONE IS ADDING TO a student OBJECT. SO WE NEED TO ADD PHONE TO STUDENT
         Phone savePhone = phoneRepo.save(student.getPhone());
         student.setPhone(savePhone);
 
-        ///  NOW THE STUDENT HAVE THE PHONE AND PRIMARY KEY
+        ///  NOW THE STUDENT HAS THE PHONE AND PRIMARY KEY
         Student studentEntity = studentRepo.save(student);
         return studentEntity;
     }
